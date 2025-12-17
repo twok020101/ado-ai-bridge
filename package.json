@@ -10,7 +10,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Start-Ops/ado-agent-bridge"
+		"url": "https://github.com/twok020101/ado-ai-bridge"
 	},
 	"engines": {
 		"vscode": "^1.85.0"
