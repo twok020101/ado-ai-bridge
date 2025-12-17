@@ -3,7 +3,7 @@
 	"displayName": "ADO AI Bridge",
 	"description": "Bridge between Azure DevOps and AI Agents",
 	"version": "0.3.1",
-	"icon": "resources/icon.svg",
+	"icon": "resources/icon.png",
 	"publisher": "kshitijkurandwad",
 	"author": {
 		"name": "Kshitij Kurandwad"
