@@ -2,7 +2,8 @@
 	"name": "ado-ai-bridge",
 	"displayName": "ADO AI Bridge",
 	"description": "Bridge between Azure DevOps and AI Agents",
-	"version": "0.3.0",
+	"version": "0.3.1",
+	"icon": "resources/icon.svg",
 	"publisher": "kshitijkurandwad",
 	"author": {
 		"name": "Kshitij Kurandwad"
@@ -18,7 +19,7 @@
 	"categories": [
 		"Other"
 	],
-	"main": "./out/extension.js",
+	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -82,9 +83,13 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run build",
-		"build": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
+		"vscode:prepublish": "npm run package",
+		"compile": "npm run check-types && npm run lint && node esbuild.js",
+		"watch": "npm-run-all -p watch:*",
+		"watch:esbuild": "node esbuild.js --watch",
+		"watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+		"package": "npm run check-types && npm run lint && node esbuild.js --production",
+		"check-types": "tsc --noEmit",
 		"test": "jest",
 		"lint": "eslint src",
 		"format": "prettier --write ."
@@ -95,11 +100,13 @@
 		"@types/vscode": "^1.85.0",
 		"@typescript-eslint/eslint-plugin": "^8.50.0",
 		"@typescript-eslint/parser": "^8.50.0",
+		"esbuild": "^0.27.2",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.4",
 		"globals": "^16.5.0",
 		"jest": "^30.2.0",
+		"npm-run-all": "^4.1.5",
 		"prettier": "^3.7.4",
 		"ts-jest": "^29.4.6",
 		"typescript": "^5.3.0",
