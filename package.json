@@ -1,0 +1,111 @@
+{
+	"name": "ado-ai-bridge",
+	"displayName": "ADO AI Bridge",
+	"description": "Bridge between Azure DevOps and AI Agents",
+	"version": "0.2.0",
+	"publisher": "kshitijkurandwad",
+	"author": {
+		"name": "Kshitij Kurandwad"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Start-Ops/ado-agent-bridge"
+	},
+	"engines": {
+		"vscode": "^1.85.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "adoBridge.dumpContextToClipboard",
+				"title": "ADO Bridge: Dump PR Context to Clipboard"
+			},
+			{
+				"command": "adoBridge.listRepositories",
+				"title": "ADO Bridge: List Repositories"
+			},
+			{
+				"command": "adoBridge.configure",
+				"title": "ADO Bridge: Configure",
+				"icon": "$(gear)"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "adoBridge.configure",
+					"when": "view == adoPrExplorer",
+					"group": "navigation"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "ado-bridge",
+					"title": "ADO Bridge",
+					"icon": "$(git-merge)"
+				}
+			]
+		},
+		"views": {
+			"explorer": [
+				{
+					"id": "adoPrExplorer",
+					"name": "ADO PR Explorer",
+					"icon": "$(git-pull-request)"
+				}
+			]
+		},
+		"configuration": {
+			"title": "ADO Agent Bridge",
+			"properties": {
+				"adoAgentBridge.orgUrl": {
+					"type": "string",
+					"description": "Azure DevOps Organization URL (e.g., https://dev.azure.com/myorg)"
+				},
+				"adoAgentBridge.project": {
+					"type": "string",
+					"description": "Azure DevOps Project Name"
+				},
+				"adoAgentBridge.enableMockMode": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable Mock Mode (Uses dummy data instead of ADO API)"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run build",
+		"build": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"test": "jest",
+		"lint": "eslint src",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@types/jest": "^30.0.0",
+		"@types/node": "^20.0.0",
+		"@types/vscode": "^1.85.0",
+		"@typescript-eslint/eslint-plugin": "^8.50.0",
+		"@typescript-eslint/parser": "^8.50.0",
+		"eslint": "^9.39.2",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-prettier": "^5.5.4",
+		"globals": "^16.5.0",
+		"jest": "^30.2.0",
+		"prettier": "^3.7.4",
+		"ts-jest": "^29.4.6",
+		"typescript": "^5.3.0",
+		"typescript-eslint": "^8.50.0"
+	},
+	"dependencies": {
+		"azure-devops-node-api": "^12.5.0"
+	}
+}
